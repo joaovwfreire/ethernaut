@@ -1,0 +1,77 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\Freir\\ethernaut\\contracts\\level9\\Attack.sol": {
+      "lastModificationDate": 1667226437950,
+      "contentHash": "e46529048a0049620c417721276de212",
+      "sourceName": "contracts/level9/Attack.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.11"
+      ],
+      "artifacts": [
+        "Attack"
+      ]
+    },
+    "C:\\Users\\Freir\\ethernaut\\contracts\\level9\\King.sol": {
+      "lastModificationDate": 1667219190917,
+      "contentHash": "250d8c32b5ca15a63f6b4a2d23514a90",
+      "sourceName": "contracts/level9/King.sol",
+      "solcConfig": {
+        "version": "0.6.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.0"
+      ],
+      "artifacts": [
+        "King"
+      ]
+    }
+  }
+}

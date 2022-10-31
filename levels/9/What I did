@@ -1,0 +1,15 @@
+Instance address: 0x42e7014a9d1f6765e76fa2e69532d808f2fe27e3
+
+Level address: 0xfE5aa9d3adF89558A35c0c47E8292414a8CF6D01
+
+Level instance creation transaction: https://goerli.etherscan.io/tx/0x09c5f09fb79b528c7eee1cd7fcacbe8c9b1bd6cd92db876768a5ec7045364ce2
+Level instance submission transaction: https://goerli.etherscan.io/tx/0x176d707120d8a0de338bd98451813df62dc3bc78e360b30cda1d63ce7baca10f
+The submission transaction has reverted execution on some of the internal transactions due to the fact that the Attack Smart Contract
+reverts at any fallback. Hence, it has got a warning to it, still the console has logged the level as complete.
+
+Upon reading the task, what came into focus was the following line: "avoid such a self proclamation".
+
+That directed my focus to an attack that could represent any sort of Denial of Service or could make transactions revert in any sort of way.
+(Hardcoded revert(), impossible require() method calls and fallbacks with a too big gas expenditure.)
+
+

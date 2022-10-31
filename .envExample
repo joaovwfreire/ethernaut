@@ -1,0 +1,3 @@
+ALCHEMY_API_KEY=Y
+ACTOR_PRIVATE_KEY=X
+LEVEL_ADDRESS=Z //change this whenever you create a new level instance.

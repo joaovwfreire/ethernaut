@@ -1,0 +1,14 @@
+Instance address: 0xFc7d23245dB7A07Dd59be365Fae30f2B1fDe94AC
+
+Level address: 0x545d848827bD9e0E30794a9E53f5ab04EA71d78a
+
+Level instance creation transaction: https://goerli.etherscan.io/tx/0x2a87746316356319381ac257f38e2262fbd84429bcabb2bbded1072811b83d39
+Level instance submission transaction: https://goerli.etherscan.io/tx/0x34f61b11144f31d75700f8fb24f73aaf136bacdf5e730e338f4eccd1b6dc60d4
+
+
+The contract seems to only have implemented the lockTokens modifier for the transfer function. That means one address can transfer it's balance through allowances and TransferFrom methods called by the allowed addresses. 
+
+That's exactly what I did:
+Firstly increased the allowance to have the whole balance to a second account owned by myself. 
+After that, used the transferFrom method to remove all the balance from the initial player account.
+

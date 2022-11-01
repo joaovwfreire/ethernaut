@@ -1,2 +1,7 @@
 .env
 node-modules
+node_modules/.bin/
+node_modules/
+
+node_modules/.yarn-integrity
+*.md

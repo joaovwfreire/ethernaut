@@ -1,0 +1,39 @@
+Instance address: 0x30be478fD84c14E99f5ad958DB191C0a691cD666
+
+Level address: 0x57d122d0355973dA78acF5138aE664548bB2CA2b
+
+Level instance creation transaction: https://goerli.etherscan.io/tx/0x51733a17f1b71a1d65b2159b0799e735f032c5413e2aa5d60a45da0a47e5e465
+Level instance submission transaction: https://goerli.etherscan.io/tx/0x37d6932649956964fe36a11cffc6ef83bd9131dc009b847ac1eaf5fb83ce38fc
+
+The contract runs based on delegatecall functions. 
+There are a few things one must consider when implementing delegatecalls:
+
+Smart contract storage slots
+
+    At the EVM, each smart contract storage slot has 32 bytes.
+    An address type takes up to 20 bytes.
+    A uint256 takes 32 bytes
+    A uint128 16 bytes and so forth.
+
+    For the effective usage of delegatecalls to update a smart contract state, the proxy and the contract which hosts the function getting called must refer to the same storage slot.
+
+    At the Preservation smart contract, there are 4 storage slots.
+    At the Library smart contract, there's only one, meaning that any change passed via proxy to this contract will only get applied to Preservation's first storage slot.
+
+Type imprecision
+
+    BigNumbers are passed as strings in function calls. Delegatecalls do not have an implementation to check for type precision between uint and address types.
+
+Target's Contract
+
+    Delegatecalls are ways of calling functions without having the ABI of a smart contract. It poses a risk since there's not really a sure way to know what will be executed when the function gets called.
+
+
+The attack:
+    Firstly I've deployed the Attack contract(AC).
+    After that the Preservation Contract(PC) was deployed and the AC's address was passed as an argument for PC's setFirstTime function. Which meant now the address stored at timeZone1Library was AC's.
+
+    AC has 3 storage slots, and it's setTime function changes the value at the third slot. That happens to be PC's slot which has the value for owner. Hence, the only thing left to do is to call setFirstTime with the desired owner address as argument.
+
+
+

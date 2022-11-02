@@ -5,3 +5,7 @@ node_modules
 
 node_modules/.yarn-integrity
 *.md
+artifacts
+artifacts/
+cache
+cache/

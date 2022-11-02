@@ -1,0 +1,13 @@
+Instance address: 0xfAeFd8A493560DebFAF091A441ED1E7f94B19Adf
+
+Level address: 0x026330B3Eb548B28F4BACbe101431E74597b0aa6
+
+Level instance creation transaction: https://goerli.etherscan.io/tx/0xa60480cfdb1970e9d204d5739f30ff6b23b4bbe6cfae78936c8d67b9b89f4d7a
+Level instance submission transaction: https://goerli.etherscan.io/tx/0x2ca81359348fcf1695450dc4a768b7903119c6257c7e20e9ce4065025e1247af
+
+All you need to do for this level is read the initial transaction. We can see that the lost token address is: 0x7780185cE97Ed4F48FE098c800D700C2D58D18bF and the deployer address is: 0x026330B3Eb548B28F4BACbe101431E74597b0aa6
+
+After that you instantiate the Simple Contract at 0x7780185cE97Ed4F48FE098c800D700C2D58D18bF on Remix and call the destroy function with the deployer address as argument. https://goerli.etherscan.io/tx/0x328fce4bcb017a9730fd901b12cf4c803b4484aa8578bc2febb819599ef6a903
+
+Solidity's selfdestroy method will transfer a smart contract's funds back to the address passed as argument.
+

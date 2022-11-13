@@ -91,17 +91,25 @@ Last but not least, we recursively call the script again and update the totalAtt
 
 Final result: 
 
+
 Ethernaut level 3 - script made by JoVi
- ------
+
 Checking consecutive wins amount
- ------
+
 ...
+
 10!
- ------
+
+...
+
 136 attempts so far!
- ------
+
+...
+
 Task already solved! Move on, mate!
- ------
+
+...
+
 Done in 448.89s.
 
 

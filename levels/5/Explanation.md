@@ -13,4 +13,3 @@ any negative value placed will actually represent an overflown positive integer.
 
 For that reason, the _value passed at the transfer function should be equal to a user's balance minus one. 
 
-
